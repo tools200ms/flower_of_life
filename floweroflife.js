@@ -31,22 +31,18 @@ function draw_flower_of_life(div_el, r, center_x, center_y) {
 
         function draw_petals(dist, rad_idx) {
             const sin_arr = [0, Math.sin(Math.PI/6), Math.sin(2*Math.PI/6), 1, Math.sin(4*Math.PI/6), Math.sin(5*Math.PI/6)];
-            const cos_arr = [1, Math.cos(Math.PI/6), Math.cos(2*Math.PI/6), 0, Math.cos(4*Math.PI/6), Math.cos(5*Math.PI/6)];
+            // const cos_arr = [1, Math.cos(Math.PI/6), Math.cos(2*Math.PI/6), 0, Math.cos(4*Math.PI/6), Math.cos(5*Math.PI/6)];
 
             var x_shift, y_shift;
             var i = 1;
 
             do {
-                x_shift = dist;
-                y_shift = dist;
+                // cosine is a shifted sinus, instead of calling ' Math.cos(...)' just
+                // use'sin_arr' and shift index by 3 (Math.PI/2 rad.)
+                var rad_cosidx = (rad_idx + 3) % 12;
 
-                if( (rad_idx > 5) ) {
-                    x_shift *= (-1 * sin_arr[rad_idx - 6]);
-                    y_shift *= (-1 * cos_arr[rad_idx - 6]);
-                } else {
-                    x_shift *= sin_arr[rad_idx];
-                    y_shift *= cos_arr[rad_idx];
-                }
+                x_shift = dist * ((rad_idx > 5) ? (-1*sin_arr[rad_idx - 6]) : sin_arr[rad_idx]);
+                y_shift = dist * ((rad_cosidx > 5) ? (-1*sin_arr[rad_cosidx - 6]) : sin_arr[rad_cosidx]);
 
                 ctx.beginPath();
                 ctx.arc(center_x + x_shift, center_y + y_shift, r, 0, 2*Math.PI, true);
