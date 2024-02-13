@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en-US">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Usage examples of floweroflife.js</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="./floweroflife.js"></script>
+</head>
+
+<body>
+          <div id="mainmenu_logo" alt="logo" style="width:5rem;height:5rem;"></div>
+
+          <div id="tri" style="width: 5rem; height: 5rem;"></div>
+
+          <div id="favi" style="padding: 4px; width: 128px; height: 128px; background-color: #fff;"></div>
+
+
+<script>
+jQuery(function ($) {
+
+    draw_flower_of_life( $( '#mainmenu_logo' ) );
+
+    draw_flower_of_life( $( '#tri' ), {
+        levels: 4,
+        colors: [
+            ['rgb(235, 28, 36)',  'rgba(235,  28,  36, 0.1)'],
+            [],
+            ['rgb(255, 127, 39)', 'rgba(255, 127, 39, 0.1)'],
+            ['rbg(255, 242, 00)', 'rbga(255, 242, 00, 0.1)']
+        ] } );
+
+    draw_flower_of_life( $( '#favi' ), {
+        levels: 2,
+        colors: [
+            ['rgb(255, 127, 39)', 'rgba(255, 127, 39, 0.1)'],
+            ['rbg(255, 242, 00)', 'rbga(255, 242, 00, 0.1)']
+        ] } );
+
+});
+</script>
+</body>
+
+</html>
